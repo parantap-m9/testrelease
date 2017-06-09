@@ -1,0 +1,488 @@
+<apex:page controller="TimeSheetEntryPageController" sidebar="false" showHeader="false" standardStylesheets="true">
+
+  <style>
+    .tbl1Row1{
+        background-color: #ADD8E6;
+    }
+    
+    .tbl1Row2{
+        background-color: #87CEFA;
+    }
+    
+    .alignment{
+        vertical-align: middle
+    }
+
+#headerDiv #headerNav{
+    display:inline-block;
+    margin:0;
+    padding:0;
+    background:#335599 ;
+
+
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    box-shadow:0 2px 2px rgba(0,0,0, .5);
+    -moz-box-shadow:0 2px 2px rgba(0,0,0, .5);
+    -webkit-box-shadow:0 2px 2px rgba(0,0,0, .5);
+}
+
+#headerDiv #headerNav ul{
+padding: 0px;
+float: left;
+}
+
+#headerDiv #headerNav ul li#Inc{
+margin: 0px;
+font-family: 'MonoType Corsiva'; font-size: 30px; color: white; font:'bold';
+    padding: 5px;
+    display: inline;
+    color: #000;
+}
+#headerDiv #headerNav ul li#Misc{
+margin-left: 0px;
+margin-right: 5px;
+font-family: 'MonoType Corsiva'; font-size: 30px; color: white; font:'bold';
+    padding: 5px;
+    display: inline;
+    color: #000;
+}
+
+#headerDiv #headerNav ul li#Inc:hover{
+background:#7788aa;
+    color:#000;
+    border-top:1px solid #f8f8f8;
+
+    box-shadow:inset 0 1px 0 #0070a3,inset 0 0 30px 0 #142a4a;
+    text-shadow:0 2px 2px rgba(255,255,255, 0.7);
+}
+
+#headerDiv #headerNav ul li#Misc:hover{
+background: orange;
+color:#000;
+    border-top:1px solid #f8f8f8;
+
+    -webkit-box-shadow:0 2px 2px rgba(0,0,0, .9) inset;
+    text-shadow:0 2px 2px rgba(255,255,255, 0.7);
+}
+
+    .custPopup{
+        background-color: white;
+        border-width: 2px;
+        border-style: solid;
+        opacity: 1.00;
+        z-index: 9999;
+        left: 50%;
+        padding:5px;
+        position: absolute;
+        /* These are the 3 css properties you will need to change so the popup 
+        displays in the center of the screen. First set the width. Then set 
+        margin-left to negative half of what the width is. You can add 
+        the height property for a fixed size pop up if you want.*/
+        width: 800px;
+        margin-left: -400px;
+        top:100px;
+    }
+    
+    .popupBackground {
+      /* Background color */
+        background-color:black;
+        opacity: 0.70;
+        filter: alpha(opacity = 20);
+      /* Dimensions */
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 998;
+        position: absolute;
+    }
+    
+    .popupBackgroundProgressBar {
+      /* Background color */
+        background-color:black;
+        opacity: 0.50;
+        filter: alpha(opacity = 20);
+      /* Dimensions */
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 998;
+        position: absolute;
+      /* Mouse */
+        cursor:wait;
+    }
+    
+    .PopupPanel {
+      /* Background color */
+        border: solid 2px;
+        background-color: white;
+ 
+      /* Dimensions */
+        left: 50%;
+        width: 300px;
+        margin-left: -100px;
+        top: 50%;
+        height: 50px;
+        margin-top: -25px;
+        z-index: 999;
+        position: fixed;
+      /* Mouse */
+        cursor:pointer;
+    }
+    
+  </style>
+  
+  <script>
+      function reload(){
+          document.location.reload(true);
+      }
+  </script>
+    <apex:actionStatus id="statusSaveTrip" stopText="">
+        <apex:facet name="start">
+            <div>
+                <div class="popupBackgroundProgressBar" />
+                <div class="PopupPanel">
+                    <table border="0" width="100%" height="100%">
+                        <tr>
+                            <td align="center"><b>Please Wait...</b></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><img src="{!$Resource.ProgressBar_Bar}"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionStatus>
+    
+      <apex:form id="frmTS">
+      <!-- o/p Panel for when no Tab is selected -->
+        <apex:outputPanel id="noTabSel" rendered="{!renderNoTabSelOpPanel}">
+            <div id="headerDiv">
+                <nav id="headerNav">
+                    <ul id="menu">
+                        <li id="Inc">
+                            <apex:commandLink value="Incident/User Story" action="{!tabSelection}" rerender="frmTS">
+                                <apex:param value="Inc" assignTo="{!tabToDisplay}" />
+                            </apex:commandLink>
+                        </li>
+                        <li id="Misc">
+                            <apex:commandLink value="Miscellaneous Tasks" action="{!tabSelection}" reRender="frmTS">
+                                <apex:param value="Misc" assignTo="{!tabToDisplay}" />
+                                </apex:commandLink>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </apex:outputPanel>
+
+      <!-- o/p Panel for when Inc Tab is selected -->       
+        <apex:outputPanel id="IncTabSelInc" rendered="{!renderIncTabSelOpPanel}">
+            <div id="headerDiv">
+                <nav id="headerNav">
+                    <ul id="menu">
+                        <li id="Inc">
+                            <apex:commandLink value="Incident/User Story" action="{!tabSelection}" rerender="frmTS">
+                                <apex:param value="Inc" assignTo="{!tabToDisplay}" />
+                            </apex:commandLink>
+                        </li>
+                        <li id="Misc">
+                            <apex:commandLink value="Miscellaneous Tasks" action="{!tabSelection}" reRender="frmTS">
+                                <apex:param value="Misc" assignTo="{!tabToDisplay}" />
+                                </apex:commandLink>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </apex:outputPanel>
+
+      <!-- o/p Panel for when Misc Tab is selected -->      
+        <apex:outputPanel id="IncTabSelMisc" rendered="{!renderMiscTabSelOpPanel}">
+            <div id="headerDiv">
+                <nav id="headerNav">
+                    <ul id="menu">
+                        <li id="Inc">
+                            <apex:commandLink value="Incident/User Story" action="{!tabSelection}" rerender="frmTS">
+                                <apex:param value="Inc" assignTo="{!tabToDisplay}" />
+                            </apex:commandLink>
+                        </li>
+                        <li id="Misc">
+                            <apex:commandLink value="Miscellaneous Tasks" action="{!tabSelection}" reRender="frmTS">
+                                <apex:param value="Misc" assignTo="{!tabToDisplay}" />
+                                </apex:commandLink>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </apex:outputPanel>
+        
+          <!-- PageBlock that will always be available -->
+        <apex:pageblock id="mainPgBlk" rendered="{!renderMainPgBlk}" title="TimeSheet Entry">
+           <apex:pageblockSection id="mainPgBlk1" rendered="{!renderIncTabSelOpPanel}" title="Incidents/User Story"/>
+          <apex:pageblockSection id="mainPgBlk2" rendered="{!renderMiscTabSelOpPanel}" title="Miscellaneous Tasks"/>             
+          <br/><br/>
+                        
+        <!-- OutputPanel for Inc Tab -->
+          <apex:outputPanel id="incOpPanel" rendered="{!renderIncOpPanel}" title="Inc Page Block">
+                  
+            <br/><br/>
+                
+            <apex:outputLabel > Choose Assignee to display records of: &nbsp; 
+            </apex:outputLabel>
+            <apex:actionRegion >
+              <apex:inputField value="{!assignedTasksIndividual.Assignee__c}">
+                <apex:actionSupport action="{!displayTasksOfAssignee}" event="onchange" reRender="frmTS"/>
+              </apex:inputField>
+            </apex:actionRegion>
+            <br/><br/>            
+              
+         <!-- Section 1 - for filling Timesheet entry for existing Tasks -->    
+            <apex:outputPanel id="tsEntryPriTasks" rendered="true" title="TimeSheet filling for Primary Tasks">
+                <center>
+                  <apex:commandButton value="Save All" action="{!SaveAllEfforts}" status="statusSaveTrip" rerender="frmTS"/>
+                </center>
+                <br/>
+                <apex:pageMessages />
+                <br/>
+                <apex:pageBlockTable id="assignedPriTasksTbl1" value="{!listTasksofAssignee}" var="at" columnsWidth="5%, 4%, 3%, 3%, 4%, 15%, 5%, 4%, 20%" rowClasses="tbl1Row1, tbl1Row2">
+                
+                  <apex:column headerValue="Track Efforts" >
+                    <apex:commandLink value=" Display Efforts" action="{!ViewEfforts}" rerender="frmTS"> 
+                      <apex:param name="tskNumber" value="{!at.Task_Number__c}" assignTo="{!tskNum}"/>
+                      <apex:param name="tskType" value="{!at.Type__c}" assignTo="{!tskType}"/>
+                      <apex:param name="tskEforts" value="{!at.Total_Efforts__c}" assignTo="{!tskEff}"/>
+                      <apex:param name="tskAsgnee" value="{!at.Assignee__c}" assignTo="{!tskAssignee}"/>
+                    </apex:commandLink>
+                  </apex:column>
+         
+                  <apex:column styleClass="alignment" headerValue="Task Number" style="vertical-align:top; text-align:center;">
+                    <apex:outputLink value="/{!at.Id}"> {!at.Task_Number__c} </apex:outputLink>
+                  </apex:column>
+                              
+                  <apex:column headerValue="SFDC Case" style="vertical-align:top; text-align:center;">
+                    <apex:outputText value="{!at.SFDC_Case__c}"/> 
+                  </apex:column>
+<!--
+                  <apex:column headerValue="Logged Date" style="vertical-align:top; text-align:center;">
+                    <apex:outputText value="{0,date,MM'/'dd'/'YYYY}"> 
+                      <apex:param value="{!at.Logged_Date__c}"/>
+                    </apex:outputText>
+                 </apex:column>                        
+-->
+                  <apex:column headerValue="Assignee">
+                    <apex:outputText value="{!at.Assignee__c}"/> 
+                  </apex:column>
+<!-- 
+                  <apex:column headerValue="Status" style="vertical-align:top; text-align:center;">
+                    <apex:outputText value="{!at.Status__c}"/> 
+                  </apex:column>
+ -->
+                  <apex:column headerValue="Priority" style="vertical-align:top; text-align:center;">
+                    <apex:outputText value="{!at.Priority__c}" style="width:35%"/> 
+                  </apex:column>                       
+
+                  <apex:column headerValue="Subject" style="vertical-align:top; text-align:left;">
+                    <apex:outputText value="{!at.Description__c}"/> 
+                  </apex:column>
+                    
+                  <apex:column headerValue="Effort in hrs"  style="vertical-align:top; text-align:left; width:5%">
+                    <apex:inputField value="{!at.Efforts_TS__c}" style="width:35%">
+                    </apex:inputField> 
+                  </apex:column>
+                  <apex:column headerValue="Effort Date" style="vertical-align:top; text-align:left;">
+                    <apex:inputField value="{!at.Date_TS__c}" >
+                    </apex:inputField> 
+                  </apex:column>
+                  <apex:column headerValue="Effort Description" style="vertical-align:top; text-align:left;">
+                    <apex:inputField value="{!at.Efforts_Description_TS__c}" style="width:98%">
+                    </apex:inputField> 
+                  </apex:column>
+                  
+                </apex:pageBlockTable>
+                
+            </apex:outputPanel>
+        
+         <!-- Section 2 - Display Efforts - RO Panel for Viewing History of Incident Tasks-->                
+            <apex:outputPanel id="displayEffortsPriROPanel" rendered="{!renderViewEffortsROPanel}" title="Section 2">
+                                           
+              <br></br><br></br>
+              <apex:pageBlock >
+                <apex:pageBlockSection >
+                  <b>Efforts Spent till Date by {!tskAssignee} on {!tskType} {!tskNum} is: </b><br/><br/>
+                </apex:pageBlockSection>
+
+                <apex:pageBlockTable id="ViewPriEff"  columnsWidth="70px" value="{!tteList}" var="ve">
+                    <apex:column headerValue="Action" style="width:5%">
+                        <apex:commandLink id="edtPriTimesheet" value="Edit" action="{!edtBtnClick}">
+                            <apex:param name="editTE" assignTo="{!tsToEditId}" value="{!ve.Id}" />
+                        </apex:commandLink>&nbsp; | &nbsp;
+                        <apex:commandLink id="delPriTimesheet" value="Del" action="{!delBtnClick}">
+                            <apex:param name="delTE" assignTo="{!tsToDeleteId}" value="{!ve.Id}" />
+                        </apex:commandLink>                        
+                    </apex:column>
+                    
+                  <apex:repeat value="{!$ObjectType.Timesheet__c.FieldSets.AllFields}" var="a">
+                    <apex:column headerValue="{!a.Label}" Width="5%" style="vertical-align:top; text-align:center;">
+                      <apex:outputField value="{!ve[a]}"/>    
+                    </apex:column>
+                  </apex:repeat> 
+                </apex:pageBlockTable>
+                  <font size="2.5">
+                    <b>Total Efforts spent:      
+                      <u>
+                        <apex:outputText value="{!tskEff}"/>
+                      </u>
+                    </b>
+                  </font>
+              </apex:pageBlock>                   
+
+            </apex:outputPanel>
+            
+          <!--  Section 2 - Display Efforts - RW Mode - for editing TS Entry of displayed Task -->
+            <apex:outputPanel id="displayEffortsPriRWPanel" rendered="{!renderViewEffortsRWPanel}" styleClass="popupBackground" layout="block">
+                <apex:outputPanel id="displayEffortsPriRWPopupPanel" styleClass="custPopup" layout="block" rendered="{!renderViewEffortsRWPanel}">
+                    
+                    <apex:pageBlock >
+                        <apex:pageBlockButtons >
+                            <apex:commandButton value="Save" action="{!saveUpdatedTS}" status="statusSaveTrip" rerender="frmTS"/>                        
+                            <apex:commandButton value="Cancel" action="{!cancelUpdateToTS}" />
+                        </apex:pageBlockButtons>
+                    
+                        <apex:pageBlockSection id="editPriPopupPgBlkSectn" columns="2">
+                            <apex:outputField value="{!tsToEdit.Task_Number__c}" style="width:10%" />
+                            <apex:outputField value="{!tsToEdit.Date__c}" style="width:100px"/>
+                            <apex:outputField value="{!tsToEdit.Assignee__c}" style="width:100px"/>
+                            <apex:inputField value="{!tsToEdit.Efforts_in_hrs__c}" style="width:150px"/>
+                            <apex:inputField value="{!tsToEdit.Effort_Description__c}" style="width:300px"/>
+                        </apex:pageBlockSection>                            
+                    </apex:pageBlock>
+                                
+                </apex:outputPanel>
+            </apex:outputPanel> 
+         
+         </apex:outputPanel>             
+                    
+         <!-- OutputPanel for Misc Tab     -->
+            <apex:outputPanel id="MiscOpPanel" rendered="{!renderMiscOpPanel}" title="Misc Page Block">
+                  
+            <br/><br/>
+                
+            <apex:outputLabel > Choose Assignee to display records of: &nbsp; 
+            </apex:outputLabel>
+            <apex:actionRegion >
+              <apex:inputField value="{!assignedTasksIndividual.Assignee__c}">
+                <apex:actionSupport action="{!displayTasksOfAssignee}" event="onchange" reRender="frmTS"/>
+              </apex:inputField>
+            </apex:actionRegion>
+            <br/><br/>            
+              
+         <!-- Section 1 - for filling Timesheet entry for existing Tasks -->    
+            <apex:outputPanel id="tsEntrySecTasks" rendered="true" title="TimeSheet filling for Primary Tasks">
+                <center>
+                  <apex:commandButton value="Save All" action="{!SaveAllEfforts}" status="statusSaveTrip" rerender="frmTS"/>
+                </center>
+                <br/>
+                <apex:pageMessages />
+                <br/>
+                <apex:pageBlockTable id="assignedSecTasksTbl1" value="{!listTasksofAssignee}" var="at" columnsWidth="5%, 4%, 3%, 3%, 4%, 15%, 5%, 4%, 20%" rowClasses="tbl1Row1, tbl1Row2">
+                
+                  <apex:column headerValue="Track Efforts" >
+                    <apex:commandLink value=" Display Efforts" action="{!ViewEfforts}" rerender="frmTS"> 
+                      <apex:param name="tskNumber" value="{!at.Task_Number__c}" assignTo="{!tskNum}"/>
+                      <apex:param name="tskType" value="{!at.Type__c}" assignTo="{!tskType}"/>
+                      <apex:param name="tskEforts" value="{!at.Total_Efforts__c}" assignTo="{!tskEff}"/>
+                      <apex:param name="tskAsgnee" value="{!at.Assignee__c}" assignTo="{!tskAssignee}"/>
+                    </apex:commandLink>
+                  </apex:column>
+         
+                  <apex:column styleClass="alignment" headerValue="Task Name" style="vertical-align:top; text-align:center;">
+                    <apex:outputLink value="/{!at.Id}"> {!at.Task_Number__c} </apex:outputLink>
+                  </apex:column>
+                  
+                  <apex:column headerValue="Assignee">
+                    <apex:outputText value="{!at.Assignee__c}"/> 
+                  </apex:column>
+                  
+                  <apex:column headerValue="Effort in hrs"  style="vertical-align:top; text-align:left; width:5%">
+                    <apex:inputField value="{!at.Efforts_TS__c}" style="width:35%">
+                    </apex:inputField> 
+                  </apex:column>
+                  <apex:column headerValue="Effort Date" style="vertical-align:top; text-align:left;">
+                    <apex:inputField value="{!at.Date_TS__c}" >
+                    </apex:inputField> 
+                  </apex:column>
+                  <apex:column headerValue="Effort Description" style="vertical-align:top; text-align:left;">
+                    <apex:inputField value="{!at.Efforts_Description_TS__c}" style="width:98%">
+                    </apex:inputField> 
+                  </apex:column>
+                  
+                </apex:pageBlockTable>
+                
+            </apex:outputPanel>
+        
+         <!-- Section 2 - Display Efforts - RO Panel for Viewing History of Incident Tasks-->                
+            <apex:outputPanel id="displayEffortsSecROPanel" rendered="{!renderViewEffortsROPanel}" title="Section 2">
+                                           
+              <br></br><br></br>
+              <apex:pageBlock >
+                <apex:pageBlockSection >
+                  <b>Efforts Spent till Date by {!tskAssignee} on {!tskType} {!tskNum} is: </b><br/><br/>
+                </apex:pageBlockSection>
+
+                <apex:pageBlockTable id="ViewSecEff"  columnsWidth="70px" value="{!tteList}" var="ve">
+                    <apex:column headerValue="Action" style="width:5%">
+                        <apex:commandLink id="edtSecTimesheet" value="Edit" action="{!edtBtnClick}">
+                            <apex:param name="editTE" assignTo="{!tsToEditId}" value="{!ve.Id}" />
+                        </apex:commandLink>&nbsp;| &nbsp;
+                        <apex:commandLink id="delSecTimesheet" value="Del" action="{!delBtnClick}">
+                            <apex:param name="delTE" assignTo="{!tsToDeleteId}" value="{!ve.Id}" />
+                        </apex:commandLink>                        
+                    </apex:column>
+                    
+                  <apex:repeat value="{!$ObjectType.Timesheet__c.FieldSets.AllFields}" var="a">
+                    <apex:column headerValue="{!a.Label}" Width="5%" style="vertical-align:top; text-align:center;">
+                      <apex:outputField value="{!ve[a]}"/>    
+                    </apex:column>
+                  </apex:repeat> 
+                </apex:pageBlockTable>
+                  <font size="2.5">
+                    <b>Total Efforts spent:      
+                      <u>
+                        <apex:outputText value="{!tskEff}"/>
+                      </u>
+                    </b>
+                  </font>
+              </apex:pageBlock>                   
+
+            </apex:outputPanel>
+            
+          <!--  Section 2 - Display Efforts - RW Mode - for editing TS Entry of displayed Task -->
+            <apex:outputPanel id="displayEffortsSecRWPanel" rendered="{!renderViewEffortsRWPanel}" styleClass="popupBackground" layout="block">
+                <apex:outputPanel id="displayEffortsSecRWPopupPanel" styleClass="custPopup" layout="block" rendered="{!renderViewEffortsRWPanel}">
+                    
+                    <apex:pageBlock >
+                        <apex:pageBlockButtons >
+                            <apex:commandButton value="Save" action="{!saveUpdatedTS}" status="statusSaveTrip" rerender="frmTS"/>                        
+                            <apex:commandButton value="Cancel" action="{!cancelUpdateToTS}" />
+                        </apex:pageBlockButtons>
+                    
+                        <apex:pageBlockSection id="editSecPopupPgBlkSectn" columns="2">
+                            <apex:outputField value="{!tsToEdit.Task_Number__c}" style="width:10%" />
+                            <apex:outputField value="{!tsToEdit.Date__c}" style="width:100px"/>
+                            <apex:outputField value="{!tsToEdit.Assignee__c}" style="width:100px"/>
+                            <apex:inputField value="{!tsToEdit.Efforts_in_hrs__c}" style="width:150px"/>
+                            <apex:inputField value="{!tsToEdit.Effort_Description__c}" style="width:300px"/>
+                        </apex:pageBlockSection>                            
+                    </apex:pageBlock>
+                                
+                </apex:outputPanel>
+            </apex:outputPanel> 
+         
+         </apex:outputPanel>
+                        
+        </apex:pageBlock>
+        
+      </apex:form>
+    </apex:page>

@@ -1,0 +1,567 @@
+{
+    "properties": [], 
+    "externalReferences": [], 
+    "innerClasses": [], 
+    "interfaces": [], 
+    "constructors": [], 
+    "namespace": null, 
+    "name": "TaskTriggerHandler", 
+    "tableDeclaration": {
+        "type": "TaskTriggerHandler", 
+        "modifiers": [], 
+        "references": [], 
+        "location": {
+            "column": 30, 
+            "line": 1
+        }, 
+        "name": "TaskTriggerHandler"
+    }, 
+    "key": "01p90000005WWHzAAO", 
+    "variables": [
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 53, 
+                "line": 2
+            }, 
+            "name": "listNewTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 83, 
+                "line": 2
+            }, 
+            "name": "mapNewTask"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 52, 
+                "line": 6
+            }, 
+            "name": "listNewTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 82, 
+                "line": 6
+            }, 
+            "name": "mapNewTask"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 53, 
+                "line": 10
+            }, 
+            "name": "listOldTask"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 80, 
+                "line": 10
+            }, 
+            "name": "listNewTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 110, 
+                "line": 10
+            }, 
+            "name": "mapOldTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 139, 
+                "line": 10
+            }, 
+            "name": "mapNewTask"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 52, 
+                "line": 14
+            }, 
+            "name": "listOldTask"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 79, 
+                "line": 14
+            }, 
+            "name": "listNewTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 109, 
+                "line": 14
+            }, 
+            "name": "mapOldTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 138, 
+                "line": 14
+            }, 
+            "name": "mapNewTask"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 53, 
+                "line": 18
+            }, 
+            "name": "listOldTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 83, 
+                "line": 18
+            }, 
+            "name": "mapOldTask"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 52, 
+                "line": 22
+            }, 
+            "name": "listOldTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 82, 
+                "line": 22
+            }, 
+            "name": "mapOldTask"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 49, 
+                "line": 26
+            }, 
+            "name": "listNewTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 79, 
+                "line": 26
+            }, 
+            "name": "mapNewTask"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 67, 
+                "line": 39
+            }, 
+            "name": "mapOldTasks"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 97, 
+                "line": 39
+            }, 
+            "name": "mapUpdatedTasks"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 32, 
+                "line": 46
+            }, 
+            "name": "tsList"
+        }, 
+        {
+            "type": "Task__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 25, 
+                "line": 47
+            }, 
+            "name": "t"
+        }, 
+        {
+            "type": "Timesheet__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 30, 
+                "line": 48
+            }, 
+            "name": "ts"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 77, 
+                "line": 77
+            }, 
+            "name": "mapOldTsk"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 105, 
+                "line": 77
+            }, 
+            "name": "mapNewTsk"
+        }, 
+        {
+            "type": "Task__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 19, 
+                "line": 78
+            }, 
+            "name": "t"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 54, 
+                "line": 95
+            }, 
+            "name": "listNewTask"
+        }, 
+        {
+            "type": "Task__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 21, 
+                "line": 96
+            }, 
+            "name": "t"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 20, 
+                "line": 97
+            }, 
+            "name": "DESCRIPTION"
+        }
+    ], 
+    "id": "01p90000005WWHzAAO", 
+    "methods": [
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnBeforeInsert", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listNewTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTask"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 2
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnAfterInsert", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listNewTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTask"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 6
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnBeforeUpdate", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTask"
+                }, 
+                {
+                    "type": "LIST", 
+                    "name": "listNewTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTask"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 10
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnAfterUpdate", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTask"
+                }, 
+                {
+                    "type": "LIST", 
+                    "name": "listNewTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTask"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 14
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnBeforeDelete", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTask"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 18
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnAfterDelete", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTask"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 22
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnUndelete", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listNewTask"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTask"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 26
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "insertTimeSheetOnSaveAll", 
+            "parameters": [
+                {
+                    "type": "Map", 
+                    "name": "mapOldTasks"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapUpdatedTasks"
+                }
+            ], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 25, 
+                "line": 39
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "updatePreviousEffortsOnAssigneeChng", 
+            "parameters": [
+                {
+                    "type": "Map", 
+                    "name": "mapOldTsk"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTsk"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 77
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "updateSFDCCase", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listNewTask"
+                }
+            ], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 25, 
+                "line": 95
+            }, 
+            "returnType": "void", 
+            "type": null
+        }
+    ]
+}

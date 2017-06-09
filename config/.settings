@@ -1,0 +1,19 @@
+{
+    "username": "sfuser16@gmail.com", 
+    "project_name": "My Project", 
+    "org_url": "", 
+    "namespace": "", 
+    "metadata_container": "1dc90000000MH8AAAW", 
+    "environment": "production", 
+    "workspace": "C:/Users/ammehta/workspace", 
+    "id": "GAPOA1T5UBNVC6DK9TLATI74ASHCL14J", 
+    "subscription": [
+        "ApexClass", 
+        "ApexComponent", 
+        "ApexPage", 
+        "ApexTrigger", 
+        "StaticResource", 
+        "CustomObject", 
+        "Profile"
+    ]
+}

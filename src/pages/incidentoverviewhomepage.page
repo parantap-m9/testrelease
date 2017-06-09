@@ -1,0 +1,42 @@
+<apex:page controller="incidentOverviewHomepageCtrl" sidebar="false" showheader="false">
+
+    <style>    
+        
+        #mainDiv{
+            background-color: blue;
+        }
+        
+        .tab{
+            height: 28px;
+            width: 58px;
+            color: white;
+            background: #a00;
+            background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%);
+            background: linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%);  
+            box-shadow: 5px 5px 5px #888888;
+        }
+    </style>
+    
+    <script>
+        function qSelectionJS(variable){
+            document.getElementById('{!$Component.frmIncHomePage.hiddenField}').value=variable;
+            qSelectionAF();
+        }
+    </script>
+
+    <apex:form id="frmIncHomePage">
+    
+        <apex:actionFunction name="qSelectionAF" action="{!queueSelection}" />
+        <apex:inputHidden id="hiddenField" value="{!selectedQueue}" />
+    
+        <apex:outputPanel id="incHomePanel" rendered="true">
+        <div id="mainDiv" rendered="true">
+            <apex:Image id="bckgrndImg" value="{!$Resource.GoldenGate}" />
+        </div>
+          <apex:commandButton id="L1Selection" value="SFDC L1" styleClass="tab" onclick="qSelectionJS('L1'); return false;" />
+         
+          <apex:commandButton id="L2Selection" value="SFDC L2" styleClass="tab" onclick="qSelectionJS('L2'); return false;" />
+      </apex:outputPanel>
+     </apex:form>
+  
+</apex:page>

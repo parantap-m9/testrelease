@@ -1,0 +1,639 @@
+{
+    "properties": [], 
+    "externalReferences": [], 
+    "innerClasses": [], 
+    "interfaces": [], 
+    "constructors": [], 
+    "namespace": null, 
+    "name": "TimesheetTriggerHandler", 
+    "tableDeclaration": {
+        "type": "TimesheetTriggerHandler", 
+        "modifiers": [], 
+        "references": [], 
+        "location": {
+            "column": 30, 
+            "line": 1
+        }, 
+        "name": "TimesheetTriggerHandler"
+    }, 
+    "key": "01p90000005WVSrAAO", 
+    "variables": [
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 58, 
+                "line": 3
+            }, 
+            "name": "listNewTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 57, 
+                "line": 7
+            }, 
+            "name": "listNewTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 90, 
+                "line": 7
+            }, 
+            "name": "mapNewTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 58, 
+                "line": 11
+            }, 
+            "name": "listOldTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 88, 
+                "line": 11
+            }, 
+            "name": "listNewTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 121, 
+                "line": 11
+            }, 
+            "name": "mapOldTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 153, 
+                "line": 11
+            }, 
+            "name": "mapNewTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 57, 
+                "line": 15
+            }, 
+            "name": "listOldTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 87, 
+                "line": 15
+            }, 
+            "name": "listNewTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 120, 
+                "line": 15
+            }, 
+            "name": "mapOldTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 152, 
+                "line": 15
+            }, 
+            "name": "mapNewTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 58, 
+                "line": 19
+            }, 
+            "name": "listOldTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 91, 
+                "line": 19
+            }, 
+            "name": "mapOldTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 57, 
+                "line": 23
+            }, 
+            "name": "listOldTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 90, 
+                "line": 23
+            }, 
+            "name": "mapOldTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 54, 
+                "line": 27
+            }, 
+            "name": "listNewTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 87, 
+                "line": 27
+            }, 
+            "name": "mapNewTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 72, 
+                "line": 44
+            }, 
+            "name": "listNewTS"
+        }, 
+        {
+            "type": "Set", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 17, 
+                "line": 48
+            }, 
+            "name": "setTaskIdsIns"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 29, 
+                "line": 49
+            }, 
+            "name": "mapTotalEffortsIns"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 28, 
+                "line": 50
+            }, 
+            "name": "lstTS"
+        }, 
+        {
+            "type": "Timesheet__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 26, 
+                "line": 52
+            }, 
+            "name": "t"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 56
+            }, 
+            "name": "listTask"
+        }, 
+        {
+            "type": "Task__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 21, 
+                "line": 60
+            }, 
+            "name": "ta"
+        }, 
+        {
+            "type": "Timesheet__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 30, 
+                "line": 61
+            }, 
+            "name": "ts"
+        }, 
+        {
+            "type": "Decimal", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 33, 
+                "line": 66
+            }, 
+            "name": "d"
+        }, 
+        {
+            "type": "Task__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 21, 
+                "line": 73
+            }, 
+            "name": "tsk"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 70, 
+                "line": 169
+            }, 
+            "name": "listOldTS"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 103, 
+                "line": 169
+            }, 
+            "name": "mapOldTimeSheet"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 37, 
+                "line": 171
+            }, 
+            "name": "mapTsktolstTS"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 28, 
+                "line": 172
+            }, 
+            "name": "lstTStoTsk"
+        }, 
+        {
+            "type": "Timesheet__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 26, 
+                "line": 174
+            }, 
+            "name": "ts"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 36, 
+                "line": 176
+            }, 
+            "name": "lstTStoTskNew"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 186
+            }, 
+            "name": "lstAllAssociatedTasks"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 187
+            }, 
+            "name": "lstTaskstoUpdate"
+        }, 
+        {
+            "type": "Decimal", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 17, 
+                "line": 188
+            }, 
+            "name": "hoursToDeduct"
+        }, 
+        {
+            "type": "Task__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 21, 
+                "line": 189
+            }, 
+            "name": "t"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 32, 
+                "line": 190
+            }, 
+            "name": "lstTS"
+        }, 
+        {
+            "type": "Timesheet__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 30, 
+                "line": 192
+            }, 
+            "name": "ts"
+        }
+    ], 
+    "id": "01p90000005WVSrAAO", 
+    "methods": [
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnBeforeInsert", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listNewTS"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 3
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnAfterInsert", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listNewTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTS"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 7
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnBeforeUpdate", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTS"
+                }, 
+                {
+                    "type": "LIST", 
+                    "name": "listNewTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTS"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 11
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnAfterUpdate", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTS"
+                }, 
+                {
+                    "type": "LIST", 
+                    "name": "listNewTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTS"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 15
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnBeforeDelete", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTS"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 19
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnAfterDelete", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTS"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 23
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "OnUndelete", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listNewTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapNewTS"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 27
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "populateTotalEffortsOnTSIns", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listNewTS"
+                }
+            ], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 25, 
+                "line": 44
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "updateTotalEffortsOnTSDel", 
+            "parameters": [
+                {
+                    "type": "LIST", 
+                    "name": "listOldTS"
+                }, 
+                {
+                    "type": "Map", 
+                    "name": "mapOldTimeSheet"
+                }
+            ], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 25, 
+                "line": 169
+            }, 
+            "returnType": "void", 
+            "type": null
+        }
+    ]
+}

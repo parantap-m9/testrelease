@@ -1,0 +1,179 @@
+<apex:page controller="IncidentOverviewController" sidebar="false" showHeader="false">
+
+        <style>
+            .colHeader{
+                text-align: center;
+            }
+            .tab{
+                height: 28px;
+                width: 58px;
+                color: white;
+                background: #a00;
+                background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%);
+                background: linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%);  
+                box-shadow: 5px 5px 5px #888888;
+            }
+        
+            .custPopup{
+                background-color: white;
+                border-width: 2px;
+                border-style: solid;
+                z-index: 9999;
+                left: 50%;
+                padding:5px;
+                position: absolute;
+                /* These are the 3 css properties you will need to change so the popup 
+                displays in the center of the screen. First set the width. Then set 
+                margin-left to negative half of what the width is. You can add 
+                the height property for a fixed size pop up if you want.*/
+                width: 1000px;
+                margin-left: -500px;
+                top:100px;
+            }
+            .popupBackground{
+                background-color:black;
+                opacity: 0.40;
+                filter: alpha(opacity = 50);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 9998;
+            }
+            .highlight1{
+                height: 10px;
+                background-color: #FFFF99;
+            }
+            .highlight2{
+                height: 10px;
+                background-color: #CCFFCC;
+            }
+            
+        </style>
+
+      <apex:form id="frmIncPage" >
+      
+          <apex:pageblock id="mainPgBlk" rendered="true" mode="inlineEdit">
+
+            <!-- o/p panel that will be always available-->
+                <apex:outputPanel id="mainPanel" >
+     
+                  <br>
+                  <apex:pageMessages />
+                  </br>
+                  
+                 <!--o/p panel that will render a pageBlockTable (for RO mode) -->
+                 <br></br>
+                    
+                    <apex:pageBlock id="ROPgBlk">
+                        <apex:pageBlockButtons >
+                            <apex:commandButton id="saveBtn" value="Save" action="{!saveBtnClick}" style="display: none"/>                        
+                            <apex:commandButton id="cancelBtn" value="Cancel" action="{!cancelBtnClick}" style="display: none"/>
+                        </apex:pageBlockButtons>                    
+                    
+                    <apex:pageBlockTable id="overviewTable1" align="center" columns="13" columnswidth="1%, 2%, 1%, 1%, 1%, 1%, 1%, 1%, 1%, 10%, 1%, 1%, 1%" rowClasses="highlight1, highlight2" value="{!listOpenIncidents}" var="incidents">
+
+                            <apex:Variable var="j" value="{!0}" />
+                            <apex:column headerValue="Sr. No." headerClass="colHeader">
+                                {!j}
+                                <apex:Variable var="j" value="{!j+1}" />
+                            </apex:column>
+                            <apex:column headerValue="Action" headerClass="colHeader">
+                                    <apex:commandLink value="Delete" rendered="{!renderROPanel}" action="{!delBtnClick}" onclick="return confirm('Are you sure you want to delete this Incident?')" >
+                                        <apex:param name="delIncNum" value="{!incidents.task.Task_Number__c}" />
+                                    </apex:commandLink>&nbsp; | &nbsp;
+                                    <apex:commandLink value="Edit" rendered="{!renderROPanel}" action="{!editBtnClick}" >
+                                        <apex:param name="editIncNum" value="{!incidents.task.Task_Number__c}" />
+                                    </apex:commandLink> <br></br>
+                                    <apex:commandLink value="Escalate To L2" action="{!escalateToL2}" rendered="{!displayEscToL2}">
+                                        <apex:param name="escalateIncNum" value="{!incidents.task.Task_Number__c}" />
+                                    </apex:commandLink>
+                            </apex:column>
+                            
+                            <apex:column headerValue="Edited?" headerClass="colHeader">
+                                <apex:actionRegion>
+                                    <apex:inputCheckBox value="{!incidents.selected}">
+                                        <apex:actionSupport event="onclick" action="{!getSelected}" rerender="abc" />
+                                    </apex:inputCheckBox>
+                                </apex:actionRegion>
+                            </apex:column>
+                            
+                            <apex:column headerValue="Task Number" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.Task_Number__c}" />
+                            </apex:column>
+                            
+                            <apex:column headerValue="SFDC Case #" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.SFDC_Case__c}" />
+                            </apex:column>
+                            
+                            <apex:column headerValue="Remedy Priority" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.Priority__c}" >
+                                </apex:outputField>                                                         
+                            </apex:column>
+                            
+                            <apex:column headerValue="Logged Date" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.Logged_Date__c}" >
+                                </apex:outputField>
+                            </apex:column>
+                            
+                            <apex:column headerValue="Status" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.Status__c}" >
+                                </apex:outputField>
+                            </apex:column>
+                            
+                            <apex:column headerValue="Application Area" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.Application_Area__c}" />                              
+                            </apex:column>
+                            
+                            <apex:column headerValue="Issue Description" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.Description__c}" />                           
+                            </apex:column>
+                            
+                            <apex:column headerValue="Customer/Requestor" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.Customer__c}" />                          
+                            </apex:column>
+                            
+                            <apex:column headerValue="Assignee" headerClass="colHeader">
+                                <apex:outputField value="{!incidents.task.Assignee__c}" >
+                                </apex:outputField>
+                            </apex:column>
+                                 
+                            <apex:inlineEditSupport event="ondblclick" showonEdit="saveBtn, cancelBtn" />
+                            
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>
+
+                    
+                <!--o/p panel for rendering read-write panel -->
+                    <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!renderRWPanel}" id="readwritePanel"/>
+                        <apex:outputPanel styleClass="custPopup" layout="block" id="readwritePopupPanel" rendered="{!renderRWPanel}">
+                            
+                            <apex:pageBlock id="editPopupPgBlk">
+                                <apex:pageBlockButtons >
+                                    <apex:commandButton value="Save" action="{!saveBtnClick}" />                        
+                                    <apex:commandButton value="Cancel" action="{!cancelBtnClick}" />
+                                </apex:pageBlockButtons>
+                                
+                                    <apex:pageBlockSection id="editPopupPgBlkSectn" columns="2">
+                                        <apex:outputField value="{!editInc.Task_Number__c}" style="width:300px, position: absolute" />
+                                        <apex:outputField value="{!editInc.SFDC_Case__c}" style="width:300px, position: absolute" />
+                                        <apex:outputField value="{!editInc.Logged_Date__c}" style="width:100px, position: absolute"/>
+                                        <apex:inputField value="{!editInc.Priority__c}" style="width:100px, position: absolute"/>
+                                        <apex:inputField value="{!editInc.Application_Area__c}" style="width:150px, position: absolute"/>
+                                        <apex:inputField value="{!editInc.Description__c}" style="width:400px"/>
+                                        <apex:outputField value="{!editInc.Customer__c}" style="width:150px, position: absolute"/>
+                                        <apex:inputField value="{!editInc.Assignee__c}" style="width:300px, position:absolute"/>                               
+                                        <apex:inputField value="{!editInc.Status__c}" style="width:300px, position: absolute"/>
+                                    </apex:pageBlockSection>
+                                
+                            </apex:pageblock>
+                        </apex:outputPanel>
+                        
+                </apex:outputPanel>
+            
+          </apex:pageblock>  
+      
+      </apex:form>
+      
+    </apex:page>

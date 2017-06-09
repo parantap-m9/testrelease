@@ -1,0 +1,42 @@
+<apex:page controller="ExpTrackerLoginCon">
+
+    <script>
+        function loginJS(){
+            var uname = document.getElementById('{!$Component.frmLogin.pbLogin.pbsLogin.uname}');
+            var pass = document.getElementById('{!$Component.frmLogin.pbLogin.pbsLogin.pwd}');
+
+            if(uname.value == ''){
+                alert("Please enter Username");
+            }
+            else if(pass.value == ''){
+                alert("Please Enter Password");
+            }
+            else{
+                loginAF();
+            }
+        }   
+    </script>
+
+
+    <apex:form id="frmLogin">
+    
+        <apex:actionFunction name="loginAF" action="{!loginValidation}"/>
+    
+        <apex:pageMessages id="showmsg"></apex:pageMessages>
+    
+        <apex:pageblock id="pbLogin">
+            <apex:outputText >Status: Waiting for Login Credentials</apex:outputText>
+            <apex:pageBlockSection id="pbsLogin" columns="2" collapsible="false" title="Please Enter Login Credentials">
+                <apex:outputText value="UserName: "></apex:outputText>
+                <apex:inputText id="uname" value="{!uname}"/>
+                <apex:outputText value="Password"></apex:outputText>
+                <apex:inputsecret id="pwd" value="{!pwd}"/>
+                
+                <apex:commandButton value="Login" onclick="loginJS(); return false;"/>
+                
+            </apex:pageBlockSection>
+        </apex:pageblock>
+                
+</apex:form>
+
+</apex:page>
